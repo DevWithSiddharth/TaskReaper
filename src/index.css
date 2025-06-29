@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 .todos::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .todos::-webkit-scrollbar-track {
-    background: #e5e7eb; 
-    border-radius: 8px;
-  }
-  
-  .todos::-webkit-scrollbar-thumb {
-    background-color: #555758;
-    border-radius: 8px;
-    border: 2px solid #e5e7eb;
-  }
+  width: 8px;
+}
+
+.todos::-webkit-scrollbar-track {
+  background: #000; 
+  border-radius: 8px;
+}
+
+.todos::-webkit-scrollbar-thumb {
+  background-color: #333; 
+  border-radius: 8px;
+  border: 2px solid #000; 
+}

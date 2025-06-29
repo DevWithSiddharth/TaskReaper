@@ -10,7 +10,6 @@ function App() {
   const [editingId, setEditingId] = useState(null);
   const [filter, setFilter] = useState("pending");
 
-  // Load from localStorage once on component mount
   useEffect(() => {
     const stored = localStorage.getItem("todos");
     if (stored) {
@@ -18,7 +17,6 @@ function App() {
     }
   }, []);
 
-  // Utility to save to localStorage
   const saveToLocal = (updatedTodos) => {
     localStorage.setItem("todos", JSON.stringify(updatedTodos));
   };
@@ -86,7 +84,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto my-5 rounded-xl shadow-lg bg-violet-100 p-5 min-h-[80vh] max-w-3xl">
+      <div className="container mx-auto my-5 rounded-xl shadow-lg bg-black p-5 min-h-[80vh] max-w-3xl text-white">
         <div className="addTodo my-5">
           <h2 className='text-xl font-bold mb-3'>Add a Todo</h2>
           <div className="flex flex-col sm:flex-row items-center gap-3">
@@ -94,13 +92,13 @@ function App() {
               onChange={handleChange}
               value={todo}
               onKeyDown={handleKeyDown}
-              className='w-full sm:w-3/4 rounded-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-500'
+              className='w-full sm:w-3/4 rounded-full px-4 py-2 border border-gray-600 bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500'
               type="text"
               placeholder="Enter at least 3 characters"
             />
             <button
               onClick={handleAdd}
-              className='cursor-pointer bg-violet-800 hover:bg-violet-950 px-5 py-2 text-white rounded-full shadow-sm text-sm font-semibold'
+              className='cursor-pointer bg-gray-800 hover:bg-gray-700 px-5 py-2 text-white rounded-full shadow-sm text-sm font-semibold'
             >
               {editingId ? "Save" : "Add"}
             </button>
@@ -109,15 +107,20 @@ function App() {
 
         <div className="filter mb-4">
           <label className='font-semibold text-sm mr-2'>Filter:</label>
-          <select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            className='rounded-md px-3 py-1 bg-white border border-gray-300 text-sm shadow-sm'
-          >
-            <option value="all">All</option>
-            <option value="completed">Finished</option>
-            <option value="pending">Not Finished</option>
-          </select>
+          <div className="relative inline-block">
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className='appearance-none rounded-md px-3 py-1 pr-8 bg-black border border-gray-600 text-sm shadow-sm text-white'
+            >
+              <option value="all">All</option>
+              <option value="completed">Finished</option>
+              <option value="pending">Not Finished</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+              ▼
+            </div>
+          </div>
         </div>
 
         <h2 className='text-lg font-bold mb-3'>Your Todos</h2>
@@ -130,7 +133,7 @@ function App() {
             filteredTodos.map(item => (
               <div
                 key={item.id}
-                className="todo flex justify-between items-center bg-white p-3 rounded-lg shadow-md"
+                className="todo flex justify-between items-center bg-[#1a1a1a] p-3 rounded-lg shadow-md border border-gray-700"
               >
                 <div className="flex items-center gap-3">
                   <input
@@ -138,25 +141,25 @@ function App() {
                     type="checkbox"
                     checked={item.isCompleted}
                     name={item.id}
-                    className="w-4 h-4"
+                    className="w-4 h-4 accent-white bg-black border border-gray-500 rounded"
                   />
-                  <span className={`text-sm ${item.isCompleted ? "line-through text-gray-400" : "text-gray-800"}`}>
+                  <span className={`text-sm ${item.isCompleted ? "line-through text-gray-500" : "text-white"}`}>
                     {item.todo}
                   </span>
                 </div>
-                <div className="flex gap-2 text-white">
+                <div className="flex gap-2">
                   <button
                     onClick={() => handleEdit(item.id)}
-                    className='cursor-pointer bg-blue-600 hover:bg-blue-800 p-2 rounded-full'
+                    className='cursor-pointer bg-gray-800 hover:bg-gray-700 p-2 rounded-full text-white hover:text-gray-300'
                     disabled={editingId !== null && editingId !== item.id}
                   >
-                    <FaEdit />
+                    <FaEdit className="text-inherit" />
                   </button>
                   <button
                     onClick={() => handleDelete(item.id)}
-                    className='cursor-pointer bg-red-600 hover:bg-red-800 p-2 rounded-full'
+                    className='cursor-pointer bg-gray-800 hover:bg-gray-700 p-2 rounded-full text-white hover:text-gray-300'
                   >
-                    <FaTrash />
+                    <FaTrash className="text-inherit" />
                   </button>
                 </div>
               </div>
