@@ -34,7 +34,7 @@ This project is built using:
 
 👉 [Click here to view the live site](https://task-reaper-ten.vercel.app)
 
-> *CyberLordSY*
+> *DevWithSiddharth*
 
 
 ---
@@ -46,7 +46,7 @@ Follow these instructions to run the app locally:
 ### Clone the repository
 
 ```
-git clone https://github.com/CyberlordSY/TaskReaper.git
+git clone https://github.com/DevWithSiddharth/TaskReaper.git
 cd TaskReaper
 npm install
 npm run dev 
